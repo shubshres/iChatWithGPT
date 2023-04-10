@@ -8,6 +8,6 @@
 import Foundation
 
 enum Constants {
-    static let openAPIKey = "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"
+    static let openAPIKey = "*******************"
     static let model = "text-davinci-003"
 }
