@@ -51,6 +51,6 @@ struct GPTTile: View {
 struct GPTTile_Previews: PreviewProvider {
     static var previews: some View {
         GPTTile()
-            .background(Color("Peach"))
+            .background(Color("Gray"))
     }
 }
