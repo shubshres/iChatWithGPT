@@ -18,6 +18,7 @@ struct ContentView: View {
     var body: some View {
         // change to lazy so that the list can be dynamically loaded
         VStack{
+            GPTTile()
             ScrollView{
                 LazyVStack {
                     ForEach(chatMessages, id: \.id) { message in
@@ -27,24 +28,46 @@ struct ContentView: View {
                 }
             }
             .padding()
-            
             HStack{
-                TextField("iMessage", text: $messageToSend){
-                }
+                Image(systemName: "camera.fill")
+                    .foregroundColor(.gray)
                     .padding()
-                    .background(.gray.opacity(0.1 ))
-                    .cornerRadius(50)
-                Button {
-                    sendMessage()
-                } label: {
-                    Image(systemName: "arrow.up")
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(.blue)
+                Image(systemName: "appclip")
+                    .foregroundColor(.gray)
+                HStack{
+                    TextField("iMessage", text: $messageToSend){
+                    }
+                        .padding()
                         .cornerRadius(50)
+                    Button {
+                        if !messageToSend.isEmpty {
+                            sendMessage()
+                        }
+                            
+                    } label: {
+                        if messageToSend.isEmpty {
+                            Image(systemName: "mic")
+                                .foregroundColor(.gray)
+                                .padding(10)
+                        }
+                        if !messageToSend.isEmpty {
+                            Image(systemName: "arrow.up")
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background(.blue)
+                                .cornerRadius(50)
+                        }
+     
+                    }
+                    .padding(.horizontal)
                 }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 22)
+                        .stroke(.gray, lineWidth: 1)
+                )
+                .padding()
+                .padding(.horizontal, 10)
             }
-            .padding()
         }
     }
     
